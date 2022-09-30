@@ -1,55 +1,63 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
 import { Entypo, AntDesign, FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
+import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { useState } from "react";
 import LikeImage from '../../assets/images/like.png';
 
 const FeedPost = ({ post }) => {
+  const navigation = useNavigation();
+	const [isLiked, setIsLiked] = useState(false);
+  
   return (
-    <View style={styles.post}>
+    <Pressable style={styles.post}>
 
-    {/* Header */}
-    <View style={styles.header}>
-        <Image source={{ uri: post.User.image }} style={styles.profileImage} />
-        <View>
-        <Text style={styles.name}>{post.User.name}</Text>
-        <Text style={styles.subtitle}>{post.createdAt}</Text>
-        </View>
-        <Entypo name="dots-three-vertical" size={18} color="grey" style={styles.icon} />
-    </View>
+      {/* Header */}
+      <Pressable style={styles.header} onPress={() => navigation.navigate("Profile", {id: post.User.id})}>
+          <Image source={{ uri: post.User.image }} style={styles.profileImage} />
+          <View>
+            <Text style={styles.name}>{post.User.name}</Text>
+            <Text style={styles.subtitle}>{post.createdAt}</Text>
+          </View>
+          <Entypo name="dots-three-vertical" size={18} color="grey" style={styles.icon} />
+      </Pressable>
 
-    {/* Body */}
-    {post.description && <Text style={styles.description}>{post.description}</Text>}
-    {post.image && <Image source={{ uri: post.image }} style={styles.image} />}
+      {/* Body */}
+      {post.description && <Text style={styles.description}>{post.description}</Text>}
+      {post.image && <Image source={{ uri: post.image }} style={styles.image} />}
 
-    {/* Footer */}
-    <View style={styles.footer}>
+      {/* Footer */}
+      <View style={styles.footer}>
 
         {/* Stats */}
         <View style={styles.statsRow}>
-        <Image source={LikeImage} style={styles.likeIcon}></Image>
-        <Text style={styles.likedBy}>{post.lastLike} and {post.numberOfLikes} others</Text>
-        <Text style={styles.shares}>{post.numberOfShares} shares</Text>
+          <Image source={LikeImage} style={styles.likeIcon}></Image>
+          <Text style={styles.likedBy}>{post.lastLike} and {post.numberOfLikes} others</Text>
+          <Text style={styles.shares}>{post.numberOfShares} shares</Text>
         </View>
 
         {/* Buttons */}
         <View style={styles.buttonsRow}>
-        <View style={styles.iconButton}>
-            <AntDesign name="like2" size={18} color="gray" />
-            <Text style={styles.iconButtonText}>Like</Text>
-        </View>
+          
+          <Pressable onPress={() => setIsLiked(!isLiked)} style={styles.iconButton}>
+            <AntDesign name={isLiked ? "like1" : "like2"} size={18} color={isLiked ? "#5e91ff" : "gray"} />
+            <Text style={[styles.iconButtonText, { color: isLiked ? "#5e91ff" : "gray" },]}>{isLiked ? "Liked" : "Like"}</Text>
+          </Pressable>
 
-        <View style={styles.iconButton}>
+          <View style={styles.iconButton}>
             <FontAwesome5 name="comment-alt" size={18} color="gray" />
             <Text style={styles.iconButtonText}>Comment</Text>
-        </View>
+          </View>
 
-        <View style={styles.iconButton}>
+          <View style={styles.iconButton}>
             <MaterialCommunityIcons name="share-outline" size={18} color="gray" />
             <Text style={styles.iconButtonText}>Share</Text>
-        </View>
+          </View>
 
         </View>
-    </View>
-    </View>
+
+      </View>
+
+    </Pressable>
   );
 }
 
