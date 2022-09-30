@@ -4,7 +4,7 @@ import FeedPost from './src/components/FeedPost';
 
 const post1 = {
   id: "p1",
-  createdAt: "April 13, 2022",
+  createdAt: "April 12, 2022",
   User: {
     id: "u1",
     image:
@@ -18,7 +18,7 @@ const post1 = {
 };
 
 const post2 = {
-  id: "p1",
+  id: "p2",
   createdAt: "April 13, 2022",
   User: {
     id: "u1",
@@ -33,8 +33,8 @@ const post2 = {
 };
 
 const post3 = {
-  id: "p1",
-  createdAt: "April 13, 2022",
+  id: "p3",
+  createdAt: "April 14, 2022",
   User: {
     id: "u1",
     image:
@@ -50,8 +50,9 @@ const post3 = {
 export default function App() {
   return (
     <View style={styles.container}>
-      <FeedPost />
-      <FeedPost />
+      <FeedPost post={post1}/>
+      <FeedPost post={post2}/>
+      <FeedPost post={post3}/>
       <StatusBar style="auto" />
     </View>
   );
