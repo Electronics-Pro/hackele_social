@@ -21,7 +21,7 @@ import {
   
   const dummy_img =
     "https://raw.githubusercontent.com/Electronics-Pro/hackele_social/main/assets/user2.jpg";
-  const bg = "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg";
+  const bg = "https://wallpaperaccess.com/full/2586817.jpg";
   
   const profilePictureWidth = Dimensions.get("window").width * 0.4;
   
@@ -47,14 +47,14 @@ import {
           <>
             <View style={styles.buttonsContainer}>
               <Pressable
-                style={[styles.button, { backgroundColor: "royalblue" }]}
+                style={[styles.button, { backgroundColor: "#5e91ff" }]}
               >
                 <AntDesign name="pluscircle" size={16} color="white" />
                 <Text style={[styles.buttonText, { color: "white" }]}>
                   Add to Story
                 </Text>
               </Pressable>
-              <Pressable style={styles.button}>
+              <Pressable style={styles.button} onPress={() => navigation.navigate("Update Profile")}>
                 <MaterialCommunityIcons name="pencil" size={16} color="black" />
                 <Text style={styles.buttonText}>Edit Profile</Text>
               </Pressable>
@@ -75,12 +75,12 @@ import {
             color="gray"
             style={{ width: 25 }}
           />
-          <Text>Graduated university</Text>
+          <Text>2nd Year Computer Engineering</Text>
         </View>
   
         <View style={styles.textLine}>
           <Ionicons name="time" size={18} color="gray" style={{ width: 25 }} />
-          <Text>Joined on October 2013</Text>
+          <Text>Joined on October 2018</Text>
         </View>
   
         <View style={styles.textLine}>
@@ -90,7 +90,7 @@ import {
             color="gray"
             style={{ width: 25 }}
           />
-          <Text>From Tenerife</Text>
+          <Text>From Cuttack, Odisha</Text>
         </View>
       </View>
     );
