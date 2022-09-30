@@ -26,7 +26,7 @@ const FeedPost = ({ post }) => {
         {/* Stats */}
         <View style={styles.statsRow}>
         <Image source={LikeImage} style={styles.likeIcon}></Image>
-        <Text style={styles.likedBy}>DAIIII-YAH and {post.numberOfLikes} others</Text>
+        <Text style={styles.likedBy}>{post.lastLike} and {post.numberOfLikes} others</Text>
         <Text style={styles.shares}>{post.numberOfShares} shares</Text>
         </View>
 
@@ -56,7 +56,7 @@ const FeedPost = ({ post }) => {
 const styles = StyleSheet.create({
   post: {
     width: "100%",
-    marginVertical: 10,
+    marginVertical: 7,
     backgroundColor: "#fff",
   },
 
