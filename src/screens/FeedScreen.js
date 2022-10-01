@@ -1,14 +1,21 @@
 import { FlatList, Pressable, Image, Text, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import posts from '../../assets/data/posts.json';
+import { useState, useEffect } from "react";
+import { Entypo } from "@expo/vector-icons";
+import { DataStore} from "aws-amplify";
+import { Post } from "../models";
 import FeedPost from "../components/FeedPost";
-import { Entypo } from "@expo/vector-icons"
 
 const img =
   "https://raw.githubusercontent.com/Electronics-Pro/hackele_social/main/assets/user2.jpg";
 
 const FeedScreen = () => {
+  const [posts, setPosts] = useState([]);
   const navigation = useNavigation();
+
+  useEffect(() => {
+    DataStore.query(Post).then(setPosts);
+  }, [])
 
   const createPost = () => {
     navigation.navigate("Create Post");

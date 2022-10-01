@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-hackelesocial-staging-124730-authRole",
+      "UnauthRoleArn": "arn:aws:iam::826087673622:role/amplify-hackelesocial-staging-124730-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::826087673622:role/amplify-hackelesocial-staging-124730-authRole",
+      "Region": "ap-south-1",
+      "DeploymentBucketName": "amplify-hackelesocial-staging-124730-deployment",
+      "UnauthRoleName": "amplify-hackelesocial-staging-124730-unauthRole",
+      "StackName": "amplify-hackelesocial-staging-124730",
+      "StackId": "arn:aws:cloudformation:ap-south-1:826087673622:stack/amplify-hackelesocial-staging-124730/369e7c60-4187-11ed-802b-02bdbc904fc4",
+      "AmplifyAppId": "deobx3lgcua53"
+    },
+    "categories": {
+      "auth": {
+        "HackEleSocial": {}
+      }
+    }
+  }
+}

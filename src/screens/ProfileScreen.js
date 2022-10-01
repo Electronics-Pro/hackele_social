@@ -18,6 +18,7 @@ import {
     Entypo,
   } from "@expo/vector-icons";
   import user from "../../assets/data/user.json";
+  import { Auth } from "aws-amplify"
   
   const dummy_img =
     "https://raw.githubusercontent.com/Electronics-Pro/hackele_social/main/assets/user2.jpg";
@@ -29,7 +30,7 @@ import {
     const navigation = useNavigation();
   
     const signOut = async () => {
-      console.warn("Sign out");
+      Auth.signOut();
     };
   
     if (!user) {

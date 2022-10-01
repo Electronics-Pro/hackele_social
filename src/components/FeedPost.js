@@ -31,7 +31,7 @@ const FeedPost = ({ post }) => {
         {/* Stats */}
         <View style={styles.statsRow}>
           <Image source={LikeImage} style={styles.likeIcon}></Image>
-          <Text style={styles.likedBy}>{post.lastLike} and {post.numberOfLikes} others</Text>
+          <Text style={styles.likedBy}>Mlon Eusk and {post.numberOfLikes} others</Text>
           <Text style={styles.shares}>{post.numberOfShares} shares</Text>
         </View>
 
@@ -40,7 +40,7 @@ const FeedPost = ({ post }) => {
           
           <Pressable onPress={() => setIsLiked(!isLiked)} style={styles.iconButton}>
             <AntDesign name={isLiked ? "like1" : "like2"} size={18} color={isLiked ? "#5e91ff" : "gray"} />
-            <Text style={[styles.iconButtonText, { color: isLiked ? "#5e91ff" : "gray" },]}>{isLiked ? "Liked" : "Like"}</Text>
+            <Text style={[styles.iconButtonText, { color: isLiked ? "#5e91ff" : "gray" },]}>{isLiked ? "Liked" : "Like⠀"}</Text>
           </Pressable>
 
           <View style={styles.iconButton}>
