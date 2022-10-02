@@ -1,6 +1,6 @@
 {
   "auth": {
-    "HackEleSocial": {
+    "hackelesocial": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -26,7 +26,7 @@
     }
   },
   "api": {
-    "HackEleSocial": {
+    "hackelesocial": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -46,6 +46,13 @@
           ]
         }
       }
+    }
+  },
+  "storage": {
+    "s3hackelesocialstoragebf396009": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
     }
   }
 }

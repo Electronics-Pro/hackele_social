@@ -1,8 +1,8 @@
 import { FlatList, Pressable, Image, Text, StyleSheet } from "react-native";
+import { DataStore, Predicates, SortDirection } from "aws-amplify";
 import { useNavigation } from "@react-navigation/native";
 import { useState, useEffect } from "react";
 import { Entypo } from "@expo/vector-icons";
-import { DataStore} from "aws-amplify";
 import { Post } from "../models";
 import FeedPost from "../components/FeedPost";
 
@@ -14,8 +14,12 @@ const FeedScreen = () => {
   const navigation = useNavigation();
 
   useEffect(() => {
-    DataStore.query(Post).then(setPosts);
-  }, [])
+    const subscription = DataStore.observeQuery(Post, Predicates.ALL, {
+      sort: (s) => s.createdAt(SortDirection.DESCENDING),
+    }).subscribe(({ items }) => setPosts(items));
+  
+    return () => subscription.unsubscribe();
+  }, []);
 
   const createPost = () => {
     navigation.navigate("Create Post");
@@ -61,6 +65,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginLeft: "auto",
+    marginRight: 5,
   },
 });
 

@@ -1,5 +1,5 @@
 {
-  "AppSyncApiName": "HackEleSocial",
+  "AppSyncApiName": "hackelesocial",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
   "DynamoDBEnableServerSideEncryption": false
 }

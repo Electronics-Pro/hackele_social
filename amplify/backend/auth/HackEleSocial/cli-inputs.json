@@ -2,9 +2,9 @@
   "version": "1",
   "cognitoConfig": {
     "identityPoolName": "testAuthIdentityPool",
-    "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "hackel19ff27c9",
-    "userPoolName": "HackEleSocial",
+    "allowUnauthenticatedIdentities": true,
+    "resourceNameTruncated": "hackelb20e81d4",
+    "userPoolName": "hackelesocial",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -25,10 +25,10 @@
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [],
     "userpoolClientReadAttributes": [],
-    "userpoolClientLambdaRole": "HackEl19ff27c9_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "hackelb20e81d4_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "19ff27c9",
-    "resourceName": "HackEleSocial",
+    "sharedId": "b20e81d4",
+    "resourceName": "hackelesocial",
     "authSelections": "identityPoolAndUserPool",
     "serviceName": "Cognito",
     "usernameAttributes": [
@@ -41,6 +41,21 @@
     "thirdPartyAuth": false,
     "authProviders": [],
     "usernameCaseSensitive": false,
-    "useEnabledMfas": true
+    "useEnabledMfas": true,
+    "authRoleArn": {
+      "Fn::GetAtt": [
+        "AuthRole",
+        "Arn"
+      ]
+    },
+    "unauthRoleArn": {
+      "Fn::GetAtt": [
+        "UnauthRole",
+        "Arn"
+      ]
+    },
+    "breakCircularDependency": true,
+    "dependsOn": [],
+    "hostedUI": false
   }
 }

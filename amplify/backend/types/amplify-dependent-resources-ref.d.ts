@@ -1,6 +1,6 @@
 export type AmplifyDependentResourcesAttributes = {
     "auth": {
-        "HackEleSocial": {
+        "hackelesocial": {
             "IdentityPoolId": "string",
             "IdentityPoolName": "string",
             "UserPoolId": "string",
@@ -11,10 +11,16 @@ export type AmplifyDependentResourcesAttributes = {
         }
     },
     "api": {
-        "HackEleSocial": {
+        "hackelesocial": {
             "GraphQLAPIKeyOutput": "string",
             "GraphQLAPIIdOutput": "string",
             "GraphQLAPIEndpointOutput": "string"
+        }
+    },
+    "storage": {
+        "s3hackelesocialstoragebf396009": {
+            "BucketName": "string",
+            "Region": "string"
         }
     }
 }

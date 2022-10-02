@@ -1,9 +1,13 @@
 import { Text, StyleSheet, View, Image, TextInput, Button, KeyboardAvoidingView } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+//import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
-import * as ImagePicker from "expo-image-picker";
+import { DataStore, Auth, Storage } from "aws-amplify";
 import { Entypo } from "@expo/vector-icons";
+import 'react-native-get-random-values'
+import { v4 as uuidv4 } from "uuid";
+import { Post } from "../models";
 import { useState } from "react";
+import * as ImagePicker from "expo-image-picker";
 
 const user = {
   id: "u2",
@@ -17,27 +21,54 @@ const CreatePostScreen = () => {
   const [image, setImage] = useState(null);
   const navigation = useNavigation();
 
-  const onSubmit = () => {
-    console.warn("On Submit", description);
-    setDescription("");
+  const onSubmit = async () => {
+    const userData = await Auth.currentAuthenticatedUser();
 
+    const newPost = {
+      description: description,
+      numberOfLikes: 0,
+      numberOfShares: 0,
+      postUserId: userData.attributes.sub,
+      _version: 1,
+    };
+
+    if (image) {
+      newPost.image = await uploadFile(image);
+    }
+
+    await DataStore.save(new Post(newPost));
+
+    setDescription("");
+    setImage(null);
     navigation.goBack();
-  }
+  };
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
-      aspect: [4, 3],
+      aspect: [1, 1],
       quality: 1,
     });
-  
-    console.log(result);
   
     if (!result.cancelled) {
       setImage(result.uri);
     }
   };
+
+  const uploadFile = async (fileUri) => {
+    try {
+      const response = await fetch(fileUri);
+      const blob = await response.blob();
+      const key = `${uuidv4()}.png`;
+      await Storage.put(key, blob, {
+        contentType: "image/png", // contentType is optional
+      });
+      return key;
+    } catch (err) {
+      console.log("Error uploading file:", err);
+    }
+  }
 
   return (
     <View style={[styles.container]}>
@@ -91,7 +122,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: "100%",
-    aspectRatio: 4/3,
+    aspectRatio: 1,
     alignSelf: "center",
     marginTop: 10,
   },
