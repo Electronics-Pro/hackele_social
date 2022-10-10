@@ -9,8 +9,6 @@ Amplify.configure({ ...awsconfig, Analytics: { disabled: true }});
 Auth.configure(awsconfig);
 
 function App() {
-
-  // Auth.currentAuthenticatedUser().then((data) => console.log(data))
   return (
     <View style={styles.container}>
       <Navigator />
