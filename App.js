@@ -16,7 +16,7 @@ function App() {
     </View>
   );
 }
-//Test123
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
